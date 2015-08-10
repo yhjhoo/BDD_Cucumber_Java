@@ -7,29 +7,47 @@ import static org.junit.Assert.*;
 
 /**
  * @author yhjhoo
- * @since 1.0
- * date : 10 Aug, 2015
+ * @since 1.0 date : 10 Aug, 2015
  *
  */
 
 public class CheckoutSteps {
 	int bananaPrice = 0;
-	Checkout checkout;
-	
+	Checkout checkout = new Checkout();
+	int applePrice = 0;
+
 	@Given("^the price of a \"([^\"]*)\" is (\\d+)c$")
-	public void thePriceOfAIsC(String name, int price) throws Throwable {
-	   bananaPrice = price;
+	public void thePriceOfAIsC(String itemName, int price) throws Throwable {
+		switch (itemName) {
+		case "apple":
+			applePrice = price;
+			break;
+		case "banana":
+			bananaPrice = price;
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@When("^I checkout (\\d+) \"([^\"]*)\"$")
 	public void iCheckout(int itemCount, String itemName) throws Throwable {
-	   checkout = new Checkout();
-	   checkout.add(itemCount, bananaPrice);
+		switch (itemName) {
+		case "apple":
+			checkout.add(itemCount, applePrice);
+			break;
+		case "banana":
+			checkout.add(itemCount, bananaPrice);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Then("^the total prise is (\\d+)c$")
-	public void theTotalPriseIsC(int arg1) throws Throwable {
-		int total = 40;
-		assertEquals(total , checkout.total() );
+	public void theTotalPriseIsC(int total) throws Throwable {
+		assertEquals(total, checkout.total());
 	}
 }

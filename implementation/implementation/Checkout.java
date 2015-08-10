@@ -7,13 +7,14 @@ package implementation;
  */
 
 public class Checkout {
+	int runningTotal = 0;
 
 	public void add(int itemCount, int price) {
-		
+		runningTotal += (itemCount * price);
 	}
 
 	public int total() {
-		return 40;
+		return runningTotal;
 	}
 
 }
