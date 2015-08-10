@@ -1,4 +1,7 @@
 #mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-p pretty ."
 #mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-p pretty --snippets camelcase features"
 #mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-p pretty --snippets camelcase -g step_definitions features"
-mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-p progress --snippets camelcase -g step_definitions features"
+#mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-p progress --snippets camelcase -g step_definitions features"
+
+## dry run, parse the file without executing it
+mvn exec:java -Dexec.mainClass="cucumber.api.cli.Main" -Dexec.args="-g step_definitions --dry-run features"
